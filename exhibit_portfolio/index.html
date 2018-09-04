@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Exhibit Portfolio</title>
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+    </head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/rngesus-small.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <body><div class="projects">
+        
+        <!--
+            <div class="project">
+                <button class="project-button">Project Name</button>
+                <div class="project-details">
+
+                </div>
+            </div>
+        -->
+        <h1 class="col3">
+            Exhibit Portfolio
+        </h1>
+        <h4 class="col1">
+                Below is a selection of some of the exhibts and interactive installations I've made.
+        </h4>
+
+        <div class="project col2">
+                <button class="project-button">Dark Ride</button>
+                <div class="project-details">
+                    <img src="images/darkRide.jpg">
+                    <img src="images/darkRide02.jpg">
+                    <div>2014</div>
+                    This project was built for Brighton Digital Festival 2014.
+                    It used the Oculus DK2 VR headset and allowed the audience to experience a live minature dark ride from a live HD video feed. The cameras rotation was built to sync with positions along the track, and also controlled the vintage lego train it rode on.
+                    <video style="width:100%" controls><source src="images/darkRide02.mp4" type="video/mp4"></video>
+                </div>
+        </div>
+            
+        <div class="project col2">
+                <button class="project-button">Reactor Runner</button>
+                <div class="project-details">
+                    <img src="images/reactor_runner.jpg">
+                    <div>2015</div>
+                    <div>Description: Installed in Glasgow science centre, this is a game that simulates the workings of a nuclear reactor. 
+                        </div>    
+                    <div>I designed the electronics, controls and lighting to this project. I also wrote the lighting control code and integrated it into the game.                
+                    </div>
+                    
+                    
+                </div>
+        </div>
+
+        <div class="project col2">
+                <button class="project-button">Tech4Good Awards</button>
+                <div class="project-details">
+                    <img src="images/tech4good.jpg">
+                    <img src="images/tech4good2.jpg">
+                    <div>2011-2018</div>
+                    <div>
+                        I have designed, built and run the tech4goods live glowstick voting system every year since 2011. It allows the audience to vote by simply waving their glowstick. It's been written in flash, webgl and unity over the years, and I try to update the design each year.
+                    </div>    
+                    
+                    
+                </div>
+        </div>
+
+        
+    </div></body>
+
+    <script>
+        "use strict";
+
+        let projectButtons = document.getElementsByClassName("project-button");
+        for(let i=0;i<projectButtons.length;i++){
+            let btn = projectButtons[i];
+            let details = btn.nextElementSibling;
+            details.style.maxHeight = "0";
+            btn.addEventListener("click",function(){ 
+                let isClosed = (details.style.maxHeight==="0px");
+                btn.classList.toggle("active");
+                details.style.maxHeight = isClosed ? details.scrollHeight+"px" : "0" ;
+            })
+        }
+    </script>    
+</html>
+

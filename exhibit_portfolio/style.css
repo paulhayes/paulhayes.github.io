@@ -1,0 +1,89 @@
+body {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.2em;
+}
+
+
+
+.projects {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project {
+    margin-bottom : 10px;
+    padding:10px;
+}
+
+h4 {
+    margin : 10px 0 10px 0;
+    padding:10px;
+}
+
+h1 {
+    margin-bottom : 10px;
+    padding:10px;
+}
+
+.project-button {
+    padding: 0;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    font-size: 2em;
+    text-align: inherit;
+    color: inherit;
+    background-color: inherit;
+}
+
+.project-button:before {
+    content:  "\25b6 ";
+    transform: rotate(0deg);
+    display: inline-block;
+    transition: transform 0.2s linear;
+    margin-right:15px;
+}
+
+.project-button.active:before {
+    content:  "\25b6 ";
+    transform: rotate(90deg);
+    display: inline-block;
+    transition: transform 0.2s linear;
+    margin-right:15px;
+}
+
+
+
+.project-details {
+    transition: max-height 0.2s ease-out;
+    overflow: hidden;
+}
+
+.project-details img {
+    width:50%;
+    float:right;
+    clear:right;
+}
+
+.col1 {
+    background-color: #d7cec7;
+    color: #000000;
+}
+
+.col2 {
+    background-color: #565656;
+    color: #fff;
+}
+
+.col3 {
+    background-color: #d7cec7;
+    color: #76323f;
+}
+
+.col4 {
+    background-color: #000;
+    color: #c09f80;
+}
