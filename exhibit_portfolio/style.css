@@ -10,6 +10,7 @@ html,body {
     background:#ddd;
 }
 
+
 .projects {
     max-width: 800px;
     margin: 0 auto;
@@ -37,6 +38,10 @@ h4 {
 h1 {
     margin : 0 0 10px 0;
     padding:10px;
+    background-image: url("images/rngesus-smaller.jpg");
+    background-position: right 10px center;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
 }
 
 a {
@@ -75,16 +80,20 @@ a {
 }
 
 
+.clear {
+    clear:both;
+}
 
 .project-details {
     transition: max-height 0.2s ease-out;
     overflow: hidden;
 }
 
-.project-details img {
+.project-details img,
+.intro img {
     width:50%;
     float:right;
-    clear:right;
+    margin:10px;
 }
 
 .col1 {
