@@ -49,6 +49,12 @@ a {
     text-decoration: none;
 }
 
+.intro img {
+    width:30%;
+    float:right;
+    margin:10px; 
+}
+
 .project-button {
     padding: 0;
     cursor: pointer;
@@ -57,7 +63,7 @@ a {
     font-family: inherit;
     font-size: inherit;
     outline: none;
-    font-size: 2em;
+    font-size: 1.75em;
     text-align: inherit;
     color: inherit;
     background-color: inherit;
@@ -69,6 +75,8 @@ a {
     display: inline-block;
     transition: transform 0.2s linear;
     margin-right:15px;
+    font-size: 0.7em;
+    vertical-align: baseline;
 }
 
 .project-button.active:before {
@@ -77,6 +85,7 @@ a {
     display: inline-block;
     transition: transform 0.2s linear;
     margin-right:15px;
+    
 }
 
 
@@ -89,11 +98,12 @@ a {
     overflow: hidden;
 }
 
-.project-details img,
-.intro img {
+.project-details img
+ {
     width:50%;
     float:right;
-    margin:10px;
+    margin:0 0 0 10px;
+    clear:right;
 }
 
 .col1 {
