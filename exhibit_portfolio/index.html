@@ -144,14 +144,12 @@
             if("#"+btn.parentElement.id ===location.hash){
                 setTimeout(function(){                  
                     btn.dispatchEvent(new Event("click"));
-                    console.log("opening"+location.hash, Date.now());
                     let onTransistion = function(){
                         btn.nextElementSibling.removeEventListener("transitionend",onTransistion);
                         btn.parentElement.scrollIntoView({behavior:"smooth",block:"start"});
-                        console.log("scrolling into view", Date.now());
                     };
                     btn.nextElementSibling.addEventListener("transitionend",onTransistion);
-                },2000);
+                },200);
             }
             btn.addEventListener("click",function(){ 
                 let isClosed = (details.style.maxHeight==="0px");
