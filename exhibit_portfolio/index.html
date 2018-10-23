@@ -32,7 +32,7 @@
             <div class="clear" ></div>
         </div>
 
-        <div class="project col2">
+        <div id="project001" class="project col2">
                 <button class="project-button">Dark Ride</button>
                 <div class="project-details">
                     <img src="images/darkRide.jpg">
@@ -47,7 +47,7 @@
                 </div>
         </div>
             
-        <div class="project col2">
+        <div id="project002" class="project col2">
                 <button class="project-button">Reactor Runner</button>
                 <div class="project-details">
                     <img src="images/reactor_runner.jpg">
@@ -61,7 +61,7 @@
                 </div>
         </div>
 
-        <div class="project col2">
+        <div id="project003" class="project col2">
                 <button class="project-button">Tech4Good Awards</button>
                 <div class="project-details">
                     <img src="images/tech4good.jpg">
@@ -76,7 +76,7 @@
         </div>
 
 
-        <div class="project col2">
+        <div id="project004" class="project col2">
                 <button class="project-button">Risky Business - SS Great Britain</button>
                 <div class="project-details">
                     <img src="images/brunnel2.gif">
@@ -89,7 +89,7 @@
                 </div>
         </div>
 
-        <div class="project col2">
+        <div id="project005" class="project col2">
             <button class="project-button">My Dirty Secret</button>
             <div class="project-details">
                 <img src="images/myDirtySecret.jpg">
@@ -101,7 +101,7 @@
             </div>
     </div>
 
-        <div class="project col2">
+        <div id="project006" class="project col2">
                 <button class="project-button">Doggerland Radio</button>
                 <div class="project-details">
                     <img src="images/cuttyWren.jpg">
@@ -114,7 +114,19 @@
                     
                 </div>
         </div>
-
+        <div id="project007" class="project col2">
+            <button class="project-button">DJ Mixer puzzle</button>
+            <div class="project-details">
+                <img src="images/djMixer.jpg">
+                <img src="images/djMixer2.gif">
+                <div>2018</div>
+                <div>
+                    This was created for the Brighton based escape room company Pier Pressure for their "90's rave" escape room. Formally an ordinary DJ Mixer, this now requires participants to set it's controls to particuluar positions to unlock a surpise.
+                </div> 
+                
+                
+            </div>
+        </div>
         <div class="center col1">
             Copyright 2018 Paul Hayes <a href="https://twitter.com/paul_hayes">Twitter</a> <a href="https://github.com/paulhayes">Github</a> 
         </div>
@@ -129,6 +141,18 @@
             let btn = projectButtons[i];
             let details = btn.nextElementSibling;
             details.style.maxHeight = "0";
+            if("#"+btn.parentElement.id ===location.hash){
+                setTimeout(function(){                  
+                    btn.dispatchEvent(new Event("click"));
+                    console.log("opening"+location.hash, Date.now());
+                    let onTransistion = function(){
+                        btn.nextElementSibling.removeEventListener("transitionend",onTransistion);
+                        btn.parentElement.scrollIntoView({behavior:"smooth",block:"start"});
+                        console.log("scrolling into view", Date.now());
+                    };
+                    btn.nextElementSibling.addEventListener("transitionend",onTransistion);
+                },2000);
+            }
             btn.addEventListener("click",function(){ 
                 let isClosed = (details.style.maxHeight==="0px");
                 btn.classList.toggle("active");
