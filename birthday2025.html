@@ -95,6 +95,12 @@
         .message p{
             margin-bottom: 10px;
         }
+
+        .message a:link {
+            text-decoration:dotted;
+            color:inherit;
+            font-weight: bold;
+        }
         
         @keyframes glow {
             from { text-shadow: 0 0 5px #00ff00; }
@@ -173,7 +179,7 @@
         
         <div class="message">
             <p>Greeting revolutionaries. The change you seek is possible. You are hearby invited to experience the sublime truth, to undertake my challenge on this the first day of my 45th year. May the best faction win!</p>
-            <p style="font-size: .75em">When: 06/09/2025, 6pm-9pm. Where: TBA</p>
+            <p class="small">When: 06/09/2025, 6pm-9pm. Where: TBA. <a href="https://forms.gle/qt5B4e5ntBXK9pcGA">RSVP!!!</a></a></p>
         </div>
     </div>
 
@@ -220,35 +226,41 @@
         // Start matrix rain
         createMatrixRain();
         
+
+        function setCharAt(str,index,chr) {
+            if(index > str.length-1) return str;
+            return str.substring(0,index) + chr + str.substring(index+1);
+        }
         // Add random glitch effects - character flipping
         function createCharacterFlip() {
             const messageEl = document.querySelector('.message p');
             const originalText = messageEl.textContent;
-            const glitchChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()+=<>?{}[]|';
-            
+            const glitchChars = '@#$%^&*()+=<>?{}[]|¬~\'\"';
             setInterval(() => {
-                if (Math.random() < 0.15) { // 15% chance every interval
-                    const textArray = originalText;
+                if (Math.random() < 0.25) { // 15% chance every interval
+                    let textArray = originalText;
                     const randomIndex = Math.floor(Math.random() * textArray.length);
-                    
                     // Skip spaces and punctuation for better effect
                     if (textArray[randomIndex].match(/[a-zA-Z]/)) {
                         const originalChar = textArray[randomIndex];
                         const glitchChar = glitchChars[Math.floor(Math.random() * glitchChars.length)];
                         
                         // Replace character with glitch character
-                        textArray[randomIndex] = glitchChar;
+                        textArray = setCharAt(textArray,randomIndex,glitchChar);
+                        //textArray[randomIndex] = glitchChar;
                         messageEl.innerHTML = textArray;
-                        
+                        console.log(randomIndex);
+                        console.log(textArray);
+
                         // Flip back to original after short delay
                         setTimeout(() => {
-                            messageEl.innerHTML = originalText;
-                        }, 150);
+                            textArray = setCharAt(textArray,randomIndex,originalChar);
+                            messageEl.innerHTML = textArray;
+                        }, 150+150*Math.random());
                     }
                 }
             }, 200);
         }
-        
         // Start character flipping effect
         createCharacterFlip();
     </script>
