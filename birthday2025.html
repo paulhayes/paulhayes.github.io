@@ -288,9 +288,7 @@
                     textArray = setCharAt(textArray,randomIndex,glitchChar);
                     //textArray[randomIndex] = glitchChar;
                     messageEl.innerHTML = textArray;
-                    console.log(randomIndex);
-                    console.log(textArray);
-
+                    
                     // Flip back to original after short delay
                     setTimeout(() => {
                         textArray = setCharAt(textArray,randomIndex,originalChar);
