@@ -58,20 +58,32 @@
             background: rgba(0, 0, 0, 0.8);
         }
         
-        .year-ascii {
+        .year {
+            position: relative;
+            margin-bottom: 20px;            
             font-size: 24px;
             line-height: 24px;
-            margin-bottom: 30px;
             text-align: left;
             color: #00ff00;
             text-shadow: 0 0 10px #00ff00;
             font-weight: bold;
             font-family: Courier,monospace,sans-serif;
-            font-variant-numeric: tabular-nums lining-nums;
-            font-kerning:none;
+        }
+
+        .year-ascii {
+            display: block;
+            height: fit-content;            
             white-space: pre;
         }
         
+        .squared {
+            position: absolute;
+            display: block;
+            top:10px;
+            right:-20px;
+            
+        }
+
         .cakes-container {
             display: flex;
             gap: 40px;
@@ -167,14 +179,16 @@
     <div class="matrix-bg" id="matrix"></div>
     
     <div class="container">
-        <div class="year-ascii">
-▓▓   ▓▓ ▓▓▓▓▓▓▓<span style="position: relative;top:-0.5em;left:.25em">2</span>
+        
+        <div class="year"><div class="year-ascii">
+▓▓   ▓▓ ▓▓▓▓▓▓▓
 ▓▓   ▓▓ ▓▓     
 ▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓
      ▓▓      ▓▓
      ▓▓ ▓▓▓▓▓▓▓
+     </div>
+        <div class="squared">2</div>
         </div>
-        
         <div class="cakes-container">
             <div class="cake">
 <pre>    |  |  |  |
@@ -256,37 +270,41 @@
             return str.substring(0,index) + chr + str.substring(index+1);
         }
         // Add random glitch effects - character flipping
-        function createCharacterFlip() {
-            const messageEl = document.querySelector('.message p');
+        function createCharacterFlip(selector,symbols,matchReg) {
+            const messageEl = document.querySelector(selector);
             const originalText = messageEl.textContent;
-            const glitchChars = '@#$%^&*()+=<>?{}[]|,.~\'\"';
-            setInterval(() => {
-                if (Math.random() < 0.5) { // 15% chance every interval
-                    let textArray = originalText;
-                    const randomIndex = Math.floor(Math.random() * textArray.length);
-                    // Skip spaces and punctuation for better effect
-                    if (textArray[randomIndex].match(/[a-zA-Z]/)) {
-                        const originalChar = textArray[randomIndex];
-                        const glitchChar = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                        
-                        // Replace character with glitch character
-                        textArray = setCharAt(textArray,randomIndex,glitchChar);
-                        //textArray[randomIndex] = glitchChar;
-                        messageEl.innerHTML = textArray;
-                        console.log(randomIndex);
-                        console.log(textArray);
+            const glitchChars = symbols;
+            let textArray = originalText;
+                
+            const func = () => {
+                // 15% chance every interval
+                const randomIndex = Math.floor(Math.random() * textArray.length);
+                // Skip spaces and punctuation for better effect
+                if (textArray[randomIndex].match(matchReg)) {
+                    const originalChar = textArray[randomIndex];
+                    const glitchChar = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                    
+                    // Replace character with glitch character
+                    textArray = setCharAt(textArray,randomIndex,glitchChar);
+                    //textArray[randomIndex] = glitchChar;
+                    messageEl.innerHTML = textArray;
+                    console.log(randomIndex);
+                    console.log(textArray);
 
-                        // Flip back to original after short delay
-                        setTimeout(() => {
-                            textArray = setCharAt(textArray,randomIndex,originalChar);
-                            messageEl.innerHTML = textArray;
-                        }, 300+600*Math.random());
-                    }
+                    // Flip back to original after short delay
+                    setTimeout(() => {
+                        textArray = setCharAt(textArray,randomIndex,originalChar);
+                        messageEl.innerHTML = textArray;
+                    }, 50+200*Math.random());
+                
                 }
-            }, 200);
+                setTimeout(func,500+1000*Math.random());
+            };
+            requestAnimationFrame(func);
         }
         // Start character flipping effect
-        createCharacterFlip();
+        createCharacterFlip('.message p','@#$%^&*()+=<>?{}[]|,.~\'\"',/[a-zA-Z]/);
+        createCharacterFlip('.year-ascii','░█',/▓/);
     </script>
 </body>
 </html>
