@@ -66,6 +66,10 @@
             color: #00ff00;
             text-shadow: 0 0 10px #00ff00;
             font-weight: bold;
+            font-family: Courier,monospace,sans-serif;
+            font-variant-numeric: tabular-nums lining-nums;
+            font-kerning:none;
+            white-space: pre;
         }
         
         .cakes-container {
@@ -100,6 +104,26 @@
             text-decoration:dotted;
             color:inherit;
             font-weight: bold;
+        }
+
+        .message a:hover {
+            text-decoration:dotted;
+            color:inherit;
+            font-weight: bold;
+            text-decoration: double;
+        }
+
+        .message a:visited {
+            text-decoration:underline;
+            color:inherit;
+            font-weight: bold;
+            text-decoration: double;
+        }
+
+
+        @font-face {
+        font-family: "Courier";
+        src: url(OGCourier.ttf);
         }
         
         @keyframes glow {
@@ -144,11 +168,11 @@
     
     <div class="container">
         <div class="year-ascii">
-<pre>██   ██ ███████<span style="font-size: 16px; vertical-align: super;">2</span>
-██   ██ ██     
-███████ ███████
-     ██      ██
-     ██ ███████</pre>
+▓▓   ▓▓ ▓▓▓▓▓▓▓<span style="font-size: 16px; vertical-align: super;">2</span>
+▓▓   ▓▓ ▓▓     
+▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓
+     ▓▓      ▓▓
+     ▓▓ ▓▓▓▓▓▓▓
         </div>
         
         <div class="cakes-container">
@@ -157,11 +181,11 @@
     |  |  |  |
  ________________
 |                |
-|      HAPPY     |
-|________________|
+|      HAPPY     %
+|__*_____________|
 |                |
 |    BIRTHDAY    |
-|________________|</pre>
+|____________ ___|</pre>
             </div>
             
             <div class="cake">
@@ -169,17 +193,17 @@
     |  |  |  |  |
  ___________________
 |                   |
-|     REVOLUTION    |
-|___________________|
+/     REVOLUTION    |
+|_____________+_____|
 |                   |
-|      AWAITS       |
-|___________________|</pre>
+%      AWAITS       |
+|___________________/</pre>
             </div>
         </div>
         
         <div class="message">
             <p>Greeting revolutionaries. The change you seek is possible. You are hearby invited to experience the sublime truth, to undertake my challenge on this the first day of my 45th year. May the best faction win!</p>
-            <p class="small">When: 06/09/2025, 6pm-9pm. Where: TBA. <a href="https://forms.gle/qt5B4e5ntBXK9pcGA">RSVP!!!</a></a></p>
+            <p class="small">When: 06/09/2025, 6pm-9pm. Where: TBA. <br><a href="https://forms.gle/qt5B4e5ntBXK9pcGA">RSVP HERE!!!</a></a></p>
         </div>
     </div>
 
@@ -235,9 +259,9 @@
         function createCharacterFlip() {
             const messageEl = document.querySelector('.message p');
             const originalText = messageEl.textContent;
-            const glitchChars = '@#$%^&*()+=<>?{}[]|¬~\'\"';
+            const glitchChars = '@#$%^&*()+=<>?{}[]|,.~\'\"';
             setInterval(() => {
-                if (Math.random() < 0.25) { // 15% chance every interval
+                if (Math.random() < 0.5) { // 15% chance every interval
                     let textArray = originalText;
                     const randomIndex = Math.floor(Math.random() * textArray.length);
                     // Skip spaces and punctuation for better effect
@@ -256,7 +280,7 @@
                         setTimeout(() => {
                             textArray = setCharAt(textArray,randomIndex,originalChar);
                             messageEl.innerHTML = textArray;
-                        }, 150+150*Math.random());
+                        }, 300+600*Math.random());
                     }
                 }
             }, 200);
